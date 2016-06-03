@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load register_extras %}
+<html>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<form class="form-horizontal well" id="registerForm" method="POST"
+      enctype="multipart/form-data" action="{% url 'register_user' %}">
+    <fieldset>
+        {% csrf_token %} {% load tz %}
+        {% for field in form.visible_fields %}
+            <div id="div_{{ field.html_name }}"
+                 class="form-group{% if field.errors %} has-error{% endif%}">
+                <label class="col-sm-4 control-label" for="{{ field.id_for_label }}">
+                    {{ field.label }}
+                </label>
+                <div class="col-md-6 cnt-inpt">
+                    {{ field|addcss:"form-control" }}
+                    <div class="text-muted pull-right">
+                        <small>{{ field.help_text }}</small>
+                    </div> <!-- form-group -->
+          											<span class="help-block">
+          													{% for error in field.errors %} {{error }} {% endfor %}
+          											</span> <!-- help-block -->
+                </div> <!-- col-sm-4 -->
+            </div>
+        {% endfor %}
+        {% for hidden in user_form.hidden_fields %} {{ hidden }} {% endfor %}
+
+        <div class="form-group" style="text-align:center">
+            <a href="#tf-courses">
+                <button type="submit" data-loading-text="Creating request..."
+                        class="btn btn-success solution_buttons">Create Request <i class="fa fa-angle-double-right"></i> </button></a>
+        </div> <!-- form-group -->
+    </fieldset>
+</form>
+</html>
