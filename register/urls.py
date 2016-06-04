@@ -7,5 +7,4 @@ from register.models import *
 from django.contrib.auth.decorators import login_required
 urlpatterns = [
     url(r'^$', UserRegistrationView.as_view(), name='register_user'),
-
 ]
