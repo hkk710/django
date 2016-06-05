@@ -44,20 +44,7 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">contacts</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">login <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{%  url 'register_user' %}">Sign up</a></li>
-                        <li><a href="{%  url 'login' %}">sign in</a></li>
 
-
-                    </ul>
-                </li>
-            </ul>
             <form class = "navbar-form navbar-left" role="search">
                 <div class= "form-group">
                     <input type= "text" class= "form-control" placeholder = "Search">
@@ -66,16 +53,32 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Link</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
+                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Signin/Signup <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+
+
+                    {% if user.is_anonymous %}
+                        <li><a href="{%  url 'login' %}">SIGN IN</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </li>
+                        <li><a href="{% url 'register_user' %}" >SIGN UP</a></li>
+                    {% else %}
+                        <li>
+                            <div class="btn-group">
+                                <a class="btn-new btn-nav btn-white" data-toggle="dropdown"><i class="fa fa-user fa-fw"></i>
+                        <li><a href="{%  url 'logout' %}">logout</a></li>
+                        {% if request.user.user_first_name %}
+                            {{ request.user.user_first_name }}
+                        {% elif request.user.username %}
+                            {{ request.user.username }}
+                        {% else %}
+                            {{ request.user.email }}
+                        {% endif %}
+                    {% endif %}
+                </ul>
+            </li>
+            </ul>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -90,9 +93,9 @@
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
         <div class= "panel panel-success">
-  <!-- Default panel contents -->
-  <div class="panel-heading">Login</div>
-        <div class="panel-body">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Login</div>
+            <div class="panel-body">
             </div>
             <form class="form-inline">
                 <div class="form-group">
