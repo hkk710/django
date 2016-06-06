@@ -5,11 +5,22 @@ from django.views.generic import TemplateView
 from braces.views import LoginRequiredMixin, AnonymousRequiredMixin
 from django.views.generic.edit import FormView, UpdateView
 from django.core.urlresolvers import reverse_lazy
+from django.views.generic import ListView
 from register.forms import *
 
 
 class Home(TemplateView):
     template_name="index.html"
+
+    def get_queryset(self):
+        return Chocolate.object.all()
+
+class chocolatelistview(ListView):
+    template_name="list.html"
+
+    def get_queryset(self):
+        return Chocolate.objects.all()
+
 
 
 class UserRegistrationView(AnonymousRequiredMixin, FormView):
@@ -31,3 +42,4 @@ class AddchocolateView(FormView):
     def form_valid(self, form):
         form.save()
         return FormView.form_valid(self, form)
+
