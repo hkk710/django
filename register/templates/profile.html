@@ -62,10 +62,25 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Link</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logout <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{%  url 'register_user' %}">Sign up</a></li>
-                        <li><a href="{%  url 'register_user' %}">sign in</a></li>
+                        {% if user.is_anonymous %}
+                        <li><a href="{%  url 'login' %}">SIGN IN</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{% url 'register_user' %}" >SIGN UP</a></li>
+                    {% else %}
+                        <li>
+                            <div class="btn-group">
+                                <a class="btn-new btn-nav btn-white" data-toggle="dropdown"><i class="fa fa-user fa-fw"></i>
+                        <li><a href="{%  url 'logout' %}">logout</a></li>
+                        {% if request.user.user_first_name %}
+                            {{ request.user.user_first_name }}
+                        {% elif request.user.username %}
+                            {{ request.user.username }}
+                        {% else %}
+                            {{ request.user.email }}
+                        {% endif %}
+                    {% endif %}
                     </ul>
                 </li>
             </ul>
