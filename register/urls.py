@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^$', UserRegistrationView.as_view(), name='register_user'),
     url(r'^user/success/', TemplateView.as_view(template_name='sucess.html'),    name='page'),
     url(r'^chocolate/add', AddchocolateView.as_view(), name= "add_chocolate"),
-    url(r'^chocolate/list', chocolatelistview.as_view(), name= "list")
+    url(r'^chocolate/list', chocolatelistview.as_view(), name= "list"),
+    url(r'^user/profile', profileView.as_view(), name= "profile")
 ]

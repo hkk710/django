@@ -19,4 +19,9 @@ urlpatterns = patterns('',
         auth_views.logout,
         {'template_name': 'logout.html'},
         name='logout'),
+
+    #url(r'^user/profile/$',
+     #    anonymous_required(auth_views.profile),
+      #  {'template_name': 'profile.html'},
+       # name='profile'),
    )

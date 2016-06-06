@@ -50,6 +50,8 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
                 <li><a href="#">contacts</a></li>
+
+                    </ul>
             </ul>
             <form class = "navbar-form navbar-left" role="search">
                 <div class= "form-group">
@@ -60,49 +62,15 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Link</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Signin/Signup <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{%  url 'register_user' %}">Sign up</a></li>
-                        <li><a href="{%  url 'login' %}">sign in</a></li>
+                        <li><a href="{%  url 'register_user' %}">sign in</a></li>
                     </ul>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-
-<form class="form-horizontal well" id="registerForm" method="POST"
-      enctype="multipart/form-data" action="">
-    <fieldset>
-        {% csrf_token %} {% load tz %}
-        {% for field in form.visible_fields %}
-            <div id="div_{{ field.html_name }}"
-                 class="form-group{% if field.errors %} has-error{% endif%}">
-                <label class="col-sm-4 control-label" for="{{ field.id_for_label }}">
-                    {{ field.label }}
-                </label>
-                <div class="col-md-6 cnt-inpt">
-                    {{ field|addcss:"form-control" }}
-                    <div class="text-muted pull-right">
-                        <small>{{ field.help_text }}</small>
-                    </div> <!-- form-group -->
-          											<span class="help-block">
-          													{% for error in field.errors %} {{error }} {% endfor %}
-          											</span> <!-- help-block -->
-                </div> <!-- col-sm-4 -->
-            </div>
-        {% endfor %}
-        {% for hidden in user_form.hidden_fields %} {{ hidden }} {% endfor %}
-
-        <div class="form-group" style="text-align:center">
-            <a href="#tf-courses">
-                <a href="{% url 'profile' %}">
-                <button type="submit" data-loading-text="Creating request..."
-                        class="btn btn-success solution_buttons">Login <i class="fa fa-angle-double-right"></i> </button></a>
-                        </a>
-        </div> <!-- form-group -->
-    </fieldset>
-</form>
-
 </body>
 </html>

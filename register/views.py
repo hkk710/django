@@ -15,6 +15,13 @@ class Home(TemplateView):
     def get_queryset(self):
         return Chocolate.object.all()
 
+class profileView(TemplateView):
+    template_name="profile.html"
+
+    def get_queryset(self):
+        return Chocolate.object.all()
+
+
 class chocolatelistview(ListView):
     template_name="list.html"
 
