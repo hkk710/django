@@ -12,5 +12,7 @@ urlpatterns = [
     url(r'^user/success/', TemplateView.as_view(template_name='sucess.html'),    name='page'),
     url(r'^chocolate/add', AddchocolateView.as_view(), name= "add_chocolate"),
     url(r'^chocolate/list', chocolatelistview.as_view(), name= "list"),
-    url(r'^user/profile', profileView.as_view(), name= "profile")
+    url(r'^user/profile/$', profileView.as_view(), name= "profile"),
+    url(r'^chocolate/info/(?P<choco_id>\d+)/$', ChocolateDetailsView.as_view(), name="chocolate_info"),
+    url(r'^user/profile/edit/$', UserProfileUpdateView.as_view(), name='edit_profile'),
 ]
