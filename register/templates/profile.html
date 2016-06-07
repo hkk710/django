@@ -91,5 +91,19 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+{% if user.is_anonymous %}
+        hello
+{% else %}
+        <a href="{% url 'add_chocolate' %}">
+        <button type="submit" class="btn btn-default">Add Chocolate</button>
+            </a>
+         <a href="{% url 'profile' %}">
+        <button type="submit" class="btn btn-default">profile</button>
+            </a>
+        <a href="{% url 'list' %}">
+        <button type="submit" class="btn btn-default">View list</button>
+            </a>
+
+{% endif %}
 </body>
 </html>

@@ -75,7 +75,6 @@ class ChocolateDetailsView(DetailView):
         else:
             raise Http404("No details Found.")
 
-
 class UserProfileUpdateView(LoginRequiredMixin, CurrentUserMixin, UpdateView):
     model = User
     fields = user_fields + user_extra_fields
